@@ -76,7 +76,7 @@ public class Cliente {
 		}
 		
 		Date hoje = new Date();
-		int idade = hoje.getYear() - this.nascimento.getYear();
+		int idade = hoje.getYear() - this.nascimento.getYear() - 1;
 		int mes = hoje.getMonth() - this.nascimento.getMonth();
 		
 		if(mes>0) {

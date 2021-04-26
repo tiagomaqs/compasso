@@ -37,6 +37,7 @@ public class ClienteResource {
 	
 	@PostMapping
 	public void save(@RequestBody Cliente cliente) {
+		cliente.getNascimento().setDate(cliente.getNascimento().getDate()+1);
 		clienteService.save(cliente);
 	}
 	
