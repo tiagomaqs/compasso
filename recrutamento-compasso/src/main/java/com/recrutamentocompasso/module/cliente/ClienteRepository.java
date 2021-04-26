@@ -2,6 +2,7 @@ package com.recrutamentocompasso.module.cliente;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,7 +24,7 @@ public class ClienteRepository implements IClienteRepositoryCustom{
 	@Autowired
 	IClienteRepository iClienteRepository;
 	
-	public List<Cliente> find(ClienteFilter clienteFilter) {
+	public List<Cliente> findAll(ClienteFilter clienteFilter) {
 		
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Cliente> query = builder.createQuery(Cliente.class);
@@ -45,10 +46,22 @@ public class ClienteRepository implements IClienteRepositoryCustom{
 		
 	}
 	
+	public Optional<Cliente> find(Long id) {
+		return iClienteRepository.findById(id);
+	}
+	
 	public Cliente save(Cliente cliente) {
 		Cliente clienteDB = iClienteRepository.save(cliente);
 		return clienteDB;
 		
+	}
+
+	public void delete(Long id) {
+		iClienteRepository.deleteById(id);
+	}
+
+	public void update(Cliente clienteDB) {
+		iClienteRepository.save(clienteDB);
 	}
 
 }
